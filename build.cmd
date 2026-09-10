@@ -50,12 +50,10 @@ if not exist aseprite (
 )
 
 
-rem *** get name of newest tag
+rem *** choose aseprite version ***
 
 if "%ASEPRITE_VERSION%" equ "" (
-  for /F "delims=" %%v in ('"git -C aseprite tag --sort=creatordate"') do (
-    set ASEPRITE_VERSION=%%v
-  )
+  set ASEPRITE_VERSION=v1.3.18.5
 )
 
 echo building %ASEPRITE_VERSION%

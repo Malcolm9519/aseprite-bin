@@ -1,20 +1,22 @@
-
 name: aseprite
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Version to build, leave empty for latest"
-        required: false
+        description: "Aseprite version tag to build"
+        required: true
+        default: "v1.3.18.5"
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: windows-2025
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Build
         id: build
@@ -24,7 +26,7 @@ jobs:
           ASEPRITE_VERSION: ${{ github.event.inputs.version }}
 
       - name: Archive
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: aseprite-${{ steps.build.outputs.ASEPRITE_VERSION }}
           path: github

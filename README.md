@@ -1,33 +1,33 @@
-[Aseprite][] binary build for 64-bit Windows.
+# Aseprite Windows build helper
 
-Step by step guide to build binaries for latest version:
+This fork builds a 64-bit Windows copy of [Aseprite][] from the official Aseprite source using GitHub Actions.
 
-# 1. Create fork by clicking `Fork` button on the top right
+The default build is pinned to **Aseprite v1.3.18.5** so a future upstream tag cannot silently change what gets compiled. You can still enter another Aseprite tag manually when starting the workflow.
 
-![step1a](images/step1a.png)
-![step1b](images/step1b.png)
+## Build Aseprite
 
-# 2. Click `Actions` tab on the top, and enable actions
+1. Open the **Actions** tab in this repository.
+2. Select the **aseprite** workflow.
+3. Click **Run workflow**.
+4. Leave the version as `v1.3.18.5` for the pinned build, or enter another official Aseprite tag intentionally.
+5. After the workflow succeeds, open the run and download the `aseprite-<version>` artifact.
+6. Extract the downloaded ZIP and run `aseprite.exe` from the extracted Aseprite folder.
 
-![step2](images/step2.png)
+The workflow compiles Aseprite from source; this repository does not contain or redistribute a prebuilt Aseprite binary.
 
-# 3. Open `aseprite` workflow, and click `Run workflow`
+## Updating later
 
-Optionally specify which version of Asprite to build (e.g. v1.3.10) in text field.
-Leave it empty to build latest released version.
-See list of available Aseprite versions [here][versions].
+When intentionally moving to a newer stable Aseprite release, update the default version in both:
 
-![step3](images/step3.png)
+- `.github/workflows/aseprite.yml`
+- `build.cmd`
 
-# 4. Wait ~13min for build to finish, then open latest run
+Then run the workflow again.
 
-![step4](images/step4.png)
+## Licensing
 
-# 5. Scroll to the bottom to download .zip archive
-
-![step5](images/step5.png)
-
-For building newer aseprite version repeat steps 3 to 5.
+Aseprite's source code and compiled binaries are subject to Aseprite's license/EULA. Review the official [Aseprite EULA][eula] and [FAQ][faq], particularly before sharing or redistributing compiled builds.
 
 [Aseprite]: https://github.com/aseprite/aseprite
-[versions]: https://github.com/aseprite/aseprite/tags
+[eula]: https://github.com/aseprite/aseprite/blob/main/EULA.txt
+[faq]: https://www.aseprite.org/faq/
